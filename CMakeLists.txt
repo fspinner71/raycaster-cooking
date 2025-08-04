@@ -11,6 +11,11 @@ file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 # add_library(SDL3_ttf SHARED IMPORTED)
 # add_library(SDL3_mixer SHARED IMPORTED)
 
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Zi-") # or remove /Zi
+
+# Disable debug information generation during linking for Release executables
+set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} /DEBUG- /PDB:NONE") 
+
 find_library(SDL3_PATH NAMES SDL3 HINTS ${CMAKE_SOURCE_DIR}/libs)
 find_library(SDL3_IMAGE_PATH NAMES SDL3_image HINTS ${CMAKE_SOURCE_DIR}/libs)
 find_library(SDL3_TTF_PATH NAMES SDL3_ttf HINTS ${CMAKE_SOURCE_DIR}/libs)
@@ -21,6 +26,11 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/bin")
 
 
 add_executable(game ${SOURCES})
+
+target_compile_options(game PRIVATE -w)
+if(MSVW)
+    target_compile_options(game PRIVATE /wd)
+endif()
 
 if (WIN32)
 
