@@ -1,7 +1,7 @@
 #ifndef MATH_H
 #define MATH_H
 
-#include <math.h>
+#include <cmath>
 
 #define PI 3.141592653589793238462643383279502884197169399375
 

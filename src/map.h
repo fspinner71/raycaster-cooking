@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
 
 #define MAP_DEFAULT_W 10
 #define MAP_DEFAULT_H 10

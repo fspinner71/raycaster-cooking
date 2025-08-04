@@ -2,7 +2,6 @@
 #define TEXT_H
 
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
 #include <SDL3_ttf/SDL_textengine.h>
 #include <SDL3/SDL_pixels.h>
 #include <SDL3/SDL_render.h>

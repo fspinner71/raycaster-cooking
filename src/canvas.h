@@ -2,7 +2,6 @@
 #define GUI_H
 
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
 #include <SDL3_ttf/SDL_textengine.h>
 #include <vector>
 #include <string>
