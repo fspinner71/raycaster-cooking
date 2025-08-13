@@ -31,6 +31,5 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp Makefile
 	@$(CC) -MMD -MP -c $(filter-out %.h,$^) -o $@ -I$(INCLUDE_DIR)
 
 clean:
-	@rm $(PROG)
 	@rm $(BUILD_DIR)/*.o
 	@rm $(BUILD_DIR)/*.d
