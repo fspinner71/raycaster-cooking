@@ -7,7 +7,7 @@ CC = clang++
 PROG = game.exe
 
 SRCS = main.cpp game.cpp assetmanager.cpp math.cpp map.cpp player.cpp raycast.cpp camera.cpp strip.cpp npc.cpp scene.cpp interaction.cpp canvas.cpp frame.cpp text.cpp sprite.cpp stove.cpp table.cpp fridge.cpp
-LIBS = -lSDL3 -lSDL3_image -lSDL3_ttf -lSDL3_mixer
+LIBS = -lSDL3_image -lSDL3_ttf -lSDL3_mixer -lSDL3 -lfreetype -lharfbuzz
 OBJS = $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
 DEPS = $(SRCS:%.cpp=$(BUILD_DIR)/%.d)
 
@@ -31,6 +31,5 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp Makefile
 	@$(CC) -MMD -MP -c $(filter-out %.h,$^) -o $@ -I$(INCLUDE_DIR)
 
 clean:
-	@rm $(PROG)
 	@rm $(BUILD_DIR)/*.o
 	@rm $(BUILD_DIR)/*.d

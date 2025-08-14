@@ -1,4 +1,4 @@
-### BUILDING
+# BUILDING
 
 CMake is required!!!
 
