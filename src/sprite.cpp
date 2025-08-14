@@ -1,17 +1,18 @@
 #include "sprite.h"
 
 
-Sprite::Sprite(SDL_Renderer* r, SDL_Texture* t)
+Sprite::Sprite(SDL_Renderer* r, int t)
 {
-  renderer = r;
   tex = t;
+  SDL_Texture* texture = AssetManager::getInstance().getTexture(t);
+  renderer = r;
   srcRect.x = 0;
   srcRect.y = 0;
-  srcRect.w = tex->w;
-  srcRect.h = tex->h;
-  size.x = tex->w;
-  size.y = tex->h;
-  frameWidth = tex->w;
+  srcRect.w = texture->w;
+  srcRect.h = texture->h;
+  size.x = texture->w;
+  size.y = texture->h;
+  frameWidth = texture->w;
   frameIndex = 0;
   zOffset = 0;
 }
@@ -58,7 +59,7 @@ void Sprite::setSrcRect(SDL_FRect r)
   srcRect = r;
 }
 
-void Sprite::setTexture(SDL_Texture* t)
+void Sprite::setTexture(int t)
 {
   tex = t;
 }
@@ -101,7 +102,7 @@ void Sprite::draw(int screenWidth, int screenHeight, vec2 camPos, float camRot, 
 
   SDL_RenderTexture(
     renderer,
-    tex,
+    AssetManager::getInstance().getTexture(tex),
     &srcRect,
     &drawRect
   );

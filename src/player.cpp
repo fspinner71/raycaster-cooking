@@ -16,18 +16,13 @@ Player::Player(SDL_Renderer* r, int* w, int* h) : interaction(InteractionID::Non
   timeWalking = 0.f;
   holding = Item::None;
 
-  itemTextures[(int)Item::RawPatty] = IMG_LoadTexture(renderer, "assets/images/rawpatty.png");
-  itemTextures[(int)Item::CookedPatty] = IMG_LoadTexture(renderer, "assets/images/cookedpatty.png");
-  itemTextures[(int)Item::Bun] = IMG_LoadTexture(renderer, "assets/images/bun.png");
-  itemTextures[(int)Item::LettuceSlice] = IMG_LoadTexture(renderer, "assets/images/lettuce.png");
-  itemTextures[(int)Item::TomatoSlice] = IMG_LoadTexture(renderer, "assets/images/tomato.png");
-  itemTextures[(int)Item::Cheese] = IMG_LoadTexture(renderer, "assets/images/cheese.png");
-  itemTextures[(int)Item::Plate] = IMG_LoadTexture(renderer, "assets/images/plate.png");
-
-  for(int i = 0; i < (int)Item::Count; i++)
-  {
-    SDL_SetTextureScaleMode(itemTextures[i], SDL_SCALEMODE_NEAREST);
-  }
+  itemTextures[(int)Item::RawPatty] = AssetManager::getInstance().getTextureID("rawpatty");
+  itemTextures[(int)Item::CookedPatty] = AssetManager::getInstance().getTextureID("cookedpatty");
+  itemTextures[(int)Item::Bun] = AssetManager::getInstance().getTextureID("bun");
+  itemTextures[(int)Item::LettuceSlice] = AssetManager::getInstance().getTextureID("lettuce");
+  itemTextures[(int)Item::TomatoSlice] = AssetManager::getInstance().getTextureID("tomato");
+  itemTextures[(int)Item::Cheese] = AssetManager::getInstance().getTextureID("cheese");
+  itemTextures[(int)Item::Plate] = AssetManager::getInstance().getTextureID("plate");
 
   interaction = Interaction(InteractionID::None);
 
@@ -230,7 +225,7 @@ void Player::draw()
     return;
   }
 
-  SDL_Texture* tex = itemTextures[(int)holding];
+  SDL_Texture* tex = AssetManager::getInstance().getTexture(itemTextures[(int)holding]);
   SDL_FRect srcRect;
   srcRect.x = srcRect.y = 0;
   srcRect.w = tex->w;
@@ -250,8 +245,5 @@ void Player::draw()
 
 Player::~Player()
 {
-  for(int i = 0; i < (int)Item::Count; i++)
-  {
-    SDL_DestroyTexture(itemTextures[i]);
-  }
+ 
 }

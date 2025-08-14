@@ -11,7 +11,7 @@ class Scene
 {
 private:
   Map* map;
-  SDL_Texture* skyBox;
+  int skyBox;
   std::vector<NPC*> npcs;
 public:
   Scene();
@@ -24,9 +24,9 @@ public:
   }
 
   void addNPC(NPC* n);
-  void setSkyBox(SDL_Texture* s);
+  void setSkyBox(int tex);
   std::vector<NPC*> getNPCs();
-  SDL_Texture* getSkyBox();
+  int getSkyBox();
   Map* getMap();
 
   void update(double deltaTime);

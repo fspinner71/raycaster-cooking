@@ -2,13 +2,14 @@
 #define SPRITE_H
 
 #include <SDL3/SDL.h>
+#include "assetmanager.h"
 #include "math.h"
 
 class Sprite
 {
 private:
   SDL_Renderer* renderer;
-  SDL_Texture* tex;
+  int tex;
   SDL_FRect srcRect;
   SDL_FRect drawRect;
  
@@ -19,12 +20,12 @@ private:
   int frameWidth;
   int frameIndex;
 public:
-  Sprite(SDL_Renderer* r, SDL_Texture* t);
+  Sprite(SDL_Renderer* r, int t);
   void setPos(vec2 p);
   vec2 getPos();
   void setSize(vec2 s);
   void setSrcRect(SDL_FRect r);
-  void setTexture(SDL_Texture* t);
+  void setTexture(int t);
   void setFrameWidth(int w);
   void setFrameIndex(int i);
   void setZOffset(float z);

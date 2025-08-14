@@ -1,0 +1,43 @@
+{
+    "images": {
+        "walls": {
+            "path": "assets/images/walls.png"
+        },
+        "skybox": {
+            "path": "assets/images/skybox.png"
+        },
+        "stove": {
+            "path": "assets/images/stove.png"
+        },
+        "fridge": {
+            "path": "assets/images/fridge.png"
+        },
+        "rawpatty": {
+            "path": "assets/images/rawpatty.png"
+        },
+        "cookedpatty": {
+            "path": "assets/images/cookedpatty.png"
+        },
+        "bun": {
+            "path": "assets/images/bun.png"
+        },
+        "lettuce": {
+            "path": "assets/images/lettuce.png"
+        },
+        "cheese": {
+            "path": "assets/images/cheese.png"
+        },
+        "tomato": {
+            "path": "assets/images/tomato.png"
+        },
+        "plate": {
+            "path": "assets/images/plate.png"
+        }
+    },
+    "fonts": {
+        "ComicSans": {
+            "path": "assets/fonts/ComicSansMS.ttf",
+            "size": 50
+        }
+    }
+}

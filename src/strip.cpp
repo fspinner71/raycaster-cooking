@@ -1,41 +1,14 @@
 #include "strip.h"
 
-SDL_Renderer* Strip::renderer = NULL;
-SDL_Texture* Strip::wallTex = NULL;
-
-bool Strip::loadWallTexture(SDL_Renderer* r)
-{
-  renderer = r;
-  wallTex = IMG_LoadTexture(renderer, WALL_TEX_PATH);
-  if(!wallTex)
-  {
-    std::cout << "Could not load wall texture: " << SDL_GetError() << std::endl;
-    return false;
-  }
-  if(!SDL_SetTextureScaleMode(wallTex, SDL_SCALEMODE_NEAREST))
-  {
-    std::cout << "Could not set wall texture scale mode: " << SDL_GetError() << std::endl;
-    return false;
-  }
-  return true;
-}
-
-void Strip::free()
-{
-  if(wallTex)
-  {
-    SDL_DestroyTexture(wallTex);
-    wallTex = NULL;
-  }
-}
-
 Strip::Strip()
 {
   enabled = false;
 }
 
-Strip::Strip(RaycastResult ray, vec2 pos, float rot, int screenWidth, int screenHeight, int quality, int fov)
+Strip::Strip(SDL_Renderer* r, RaycastResult ray, vec2 pos, float rot, int screenWidth, int screenHeight, int quality, int fov)
 {
+  renderer = r;
+  tex = AssetManager::getInstance().getTextureID("walls");
   drawRect.x = (float)ray.index * screenWidth/quality;
   drawRect.w = (float)screenWidth/quality;
 
@@ -83,7 +56,7 @@ void Strip::draw()
 {
   SDL_RenderTexture(
     renderer,
-    wallTex,
+    AssetManager::getInstance().getTexture(tex),
     &srcRect,
     &drawRect
   );

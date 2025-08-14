@@ -10,15 +10,15 @@ void Scene::addNPC(NPC* n)
   npcs.push_back(n);
 }
 
-void Scene::setSkyBox(SDL_Texture* s)
+void Scene::setSkyBox(int tex)
 {
-  skyBox = s;
+  skyBox = tex;
 }
 std::vector<NPC*> Scene::getNPCs()
 {
   return npcs;
 }
-SDL_Texture* Scene::getSkyBox()
+int Scene::getSkyBox()
 {
   return skyBox;
 }

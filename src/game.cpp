@@ -1,5 +1,4 @@
 #include "game.h"
-#include "fridge.h"
 
 
 int Game::status = INIT_FAILURE;
@@ -17,7 +16,7 @@ bool Game::initSDL()
     std::cout << "Could not initialize TTF: " << SDL_GetError();
   }
   
-  window = SDL_CreateWindow("Tetris", WIDTH, HEIGHT, WINDOW_FLAGS);
+  window = SDL_CreateWindow("COOKING", WIDTH, HEIGHT, WINDOW_FLAGS);
   if(!window)
   {
     std::cout << "Could not create window: " << SDL_GetError() << std::endl;
@@ -38,25 +37,32 @@ bool Game::initSDL()
 
 bool Game::loadMedia()
 {
-  if(!Strip::loadWallTexture(renderer))
+  std::ifstream file("assets/assets.json");
+  if(!file.is_open())
   {
+    std::cout << "Could not open assets JSON file." << std::endl;
     return false;
   }
 
-  skyBox = IMG_LoadTexture(renderer, "assets/images/skybox.png");
-  if(!skyBox)
+  nlohmann::json j;
+  file >> j;
+
+  auto images = j["images"];
+  auto fonts = j["fonts"];
+
+  for(auto it = images.begin(); it != images.end(); it++)
   {
-    std::cout << "Could not load sky box texture: " << SDL_GetError() << std::endl;
-    return false;
+    std::string imgName = it.key();
+    auto imgData = it.value();
+    AssetManager::getInstance().addTexture(renderer, imgName, imgData["path"]);
   }
-  if(!SDL_SetTextureScaleMode(skyBox, SDL_SCALEMODE_NEAREST))
+
+  for(auto it = fonts.begin(); it != fonts.end(); it++)
   {
-    std::cout << "Could not set sky box texture scalemode: " << SDL_GetError() << std::endl;
-    return false;
+    std::string fontName = it.key();
+    auto fontData = it.value();
+    AssetManager::getInstance().addFont(renderer, fontName, fontData["path"], fontData["size"]);
   }
-  Text::loadFonts(renderer);
-  Stove::loadTexture(renderer);
-  Fridge::loadTexture(renderer);
 
   AssetManager::getInstance();
 
@@ -100,7 +106,7 @@ Game::Game()
   scene = new Scene();
   scene->setMap(m);
 
-  scene->setSkyBox(skyBox);
+  scene->setSkyBox(AssetManager::getInstance().getTextureID("skybox"));
   
   Stove* stove = new Stove(renderer);
   stove->setPos({1.5, 1.5});
@@ -206,12 +212,6 @@ bool Game::run()
 
 Game::~Game()
 {
-  Strip::free();
-  if(skyBox)
-  {
-    SDL_DestroyTexture(skyBox);
-    skyBox = NULL;
-  } 
   if(cam)
   {
     delete cam;
@@ -232,9 +232,6 @@ Game::~Game()
     delete canvas;
     canvas = NULL;
   }
-  Fridge::free();
-  Stove::free();
-  Text::freeFonts();
   if(event != NULL)
   {
     delete event;

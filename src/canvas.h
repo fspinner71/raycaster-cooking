@@ -20,8 +20,6 @@ class Canvas
 {
 private:
   SDL_Renderer* renderer;
-  TTF_TextEngine* textEngine;
-  TTF_Font* font;
 
   int* width;
   int* height;

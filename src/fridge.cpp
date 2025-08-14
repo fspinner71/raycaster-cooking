@@ -1,23 +1,8 @@
 #include "fridge.h"
 #include "interaction.h"
 
-SDL_Texture* Fridge::tex = NULL;
 
-void Fridge::loadTexture(SDL_Renderer* r)
-{
-  tex = IMG_LoadTexture(r, "assets/images/fridge.png");
-  SDL_SetTextureScaleMode(tex, SDL_SCALEMODE_NEAREST);
-}
-void Fridge::free()
-{
-  if(tex)
-  {
-    SDL_DestroyTexture(tex);
-    tex = NULL;
-  }
-}
-
-Fridge::Fridge(SDL_Renderer* r, Item t) : NPC(r, tex, InteractionID::None)
+Fridge::Fridge(SDL_Renderer* r, Item t) : NPC(r, AssetManager::getInstance().getTextureID("fridge"), InteractionID::None)
 {
   getSprite()->setSize({1000, 1000});
   getSprite()->setZOffset(0);

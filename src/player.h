@@ -53,7 +53,7 @@ private:
   int* width;
   int* height;
 
-  SDL_Texture* itemTextures[(int)Item::Count];
+  int itemTextures[(int)Item::Count];
 
   vec2 pos;
 

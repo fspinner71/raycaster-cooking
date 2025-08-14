@@ -1,7 +1,7 @@
 #include "npc.h"
 #include <SDL3_image/SDL_image.h>
 
-NPC::NPC(SDL_Renderer* r, SDL_Texture* t, InteractionID intID)
+NPC::NPC(SDL_Renderer* r, int t, InteractionID intID)
 {
 
   sprite = new Sprite(r, t);

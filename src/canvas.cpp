@@ -7,9 +7,6 @@ Canvas::Canvas(SDL_Renderer* r, int* w, int* h)
   width = w;
   height = h;
 
-  textEngine = TTF_CreateRendererTextEngine(renderer);
-  font = TTF_OpenFont("assets/fonts/ComicSansMS.ttf", TEXT_BOX_FONT_SIZE);
-
   textBox = new Frame(renderer);
   showTextBox = false;
   
@@ -21,7 +18,7 @@ Canvas::Canvas(SDL_Renderer* r, int* w, int* h)
 
   textBox->setRect(textRect);
   textBox->setColor({TEXT_BOX_COLOR});
-  text = new Text(renderer, COMIC_SANS, "");
+  text = new Text(renderer, "ComicSans", "");
 
   textRect.x += TEXT_BOX_TEXT_PADDING;
   textRect.y += TEXT_BOX_TEXT_PADDING;
@@ -62,19 +59,9 @@ Canvas::~Canvas()
     delete text;
     text = NULL;
   }
-  if(font)
-  {
-    TTF_CloseFont(font);
-    font = NULL;
-  }
   if(textBox)
   {
     delete textBox;
     textBox = NULL;
-  }
-  if(textEngine)
-  {
-    TTF_DestroyRendererTextEngine(textEngine);
-    textEngine = NULL;
   }
 }
