@@ -27,6 +27,13 @@ Canvas::Canvas(SDL_Renderer* r, int* w, int* h)
 
   text->setColor({TEXT_BOX_TEXT_COLOR});
   text->setRect(textRect);
+
+  crossHairTex = AssetManager::getInstance().getTextureID("crosshair");
+  SDL_Texture* t = AssetManager::getInstance().getTexture(crossHairTex);
+  crossHairRect.x = *width/2 - t->w/2;
+  crossHairRect.y = *height/2 - t->h/2;
+  crossHairRect.w = t->w;
+  crossHairRect.h = t->h;
 }
 
 void Canvas::enableTextBox()
@@ -44,6 +51,13 @@ void Canvas::setTextBoxText(std::string s)
 
 void Canvas::draw()
 {
+  SDL_FRect src = {0, 0, crossHairRect.w, crossHairRect.h};
+  SDL_RenderTexture(
+    renderer,
+    AssetManager::getInstance().getTexture(crossHairTex),
+    &src,
+    &crossHairRect
+  );
   if(showTextBox)
   {
     textBox->draw();

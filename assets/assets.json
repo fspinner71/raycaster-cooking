@@ -3,6 +3,9 @@
         "walls": {
             "path": "assets/images/walls.png"
         },
+        "crosshair": {
+            "path": "assets/images/crosshair.png"
+        },
         "skybox": {
             "path": "assets/images/skybox.png"
         },

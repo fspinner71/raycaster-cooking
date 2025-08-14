@@ -27,6 +27,9 @@ private:
   Frame* textBox;
   Text* text;
   bool showTextBox;
+
+  int crossHairTex;
+  SDL_FRect crossHairRect;
 public:
   Canvas(SDL_Renderer* r, int* w, int* h);
   ~Canvas();

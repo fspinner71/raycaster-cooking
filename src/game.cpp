@@ -29,8 +29,6 @@ bool Game::initSDL()
     std::cout << "Could not create renderer: " << SDL_GetError() << std::endl;
     return false;
   }
-  
- 
 
   return true;
 }
@@ -125,6 +123,8 @@ Game::Game()
 
   cam = new Camera(renderer, &width, &height);
   cam->setScene(scene);
+
+  SDL_SetWindowRelativeMouseMode(window, true);
   
   Game::status = INIT_SUCCESS;
   Game::instance = this;

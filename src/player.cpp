@@ -62,7 +62,7 @@ void Player::keyPressed(SDL_Scancode key)
 {
   switch(key)
   {
-  case SDL_SCANCODE_F:
+  case SDL_SCANCODE_E:
     if(currentInteract)
     {
       interact(currentInteract->getInteractionID());
@@ -127,21 +127,13 @@ void Player::update(double deltaTime)
     dir = {lookDir.x * dir.y - lookDir.y * dir.x, lookDir.y * dir.y + lookDir.x * dir.x};
     dir = dir.unit();
 
-    float rDir = 0.f;
-
-    if(keystates[SDL_SCANCODE_Q])
-    {
-      rDir -= 1.f;
-    }
-    if(keystates[SDL_SCANCODE_E])
-    {
-      rDir += 1.f;
-    }
+    float deltaX;
+    SDL_GetRelativeMouseState(&deltaX, nullptr);
 
     vel.x = dir.x * speed;
     vel.y = dir.y * speed;
 
-    rVel = rDir * rSpeed;
+    rVel = deltaX * rSpeed;
 
   }
   
