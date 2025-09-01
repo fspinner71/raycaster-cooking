@@ -16,11 +16,8 @@ bool Game::initSDL()
     std::cout << "Could not initialize TTF: " << SDL_GetError();
   }
   
-<<<<<<< HEAD
   window = SDL_CreateWindow("HELLO", WIDTH, HEIGHT, WINDOW_FLAGS);
-=======
   window = SDL_CreateWindow("COOKING", WIDTH, HEIGHT, WINDOW_FLAGS);
->>>>>>> refs/remotes/origin/main
   if(!window)
   {
     std::cout << "Could not create window: " << SDL_GetError() << std::endl;
