@@ -17,7 +17,7 @@ bool Game::initSDL()
     std::cout << "Could not initialize TTF: " << SDL_GetError();
   }
   
-  window = SDL_CreateWindow("Tetris", WIDTH, HEIGHT, WINDOW_FLAGS);
+  window = SDL_CreateWindow("HELLO", WIDTH, HEIGHT, WINDOW_FLAGS);
   if(!window)
   {
     std::cout << "Could not create window: " << SDL_GetError() << std::endl;
