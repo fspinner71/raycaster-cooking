@@ -21,7 +21,7 @@
 #define PLAYER_RECT_W 20
 #define PLAYER_RECT_H 20
 
-#define PLAYER_SENSITIVITY PI
+#define PLAYER_SENSITIVITY 0.1
 
 #define PLAYER_INTERACT_ANGLE 90
 #define PLAYER_INTERACT_DISTANCE 1
@@ -53,7 +53,7 @@ private:
   int* width;
   int* height;
 
-  SDL_Texture* itemTextures[(int)Item::Count];
+  int itemTextures[(int)Item::Count];
 
   vec2 pos;
 

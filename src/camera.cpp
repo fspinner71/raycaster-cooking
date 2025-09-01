@@ -48,7 +48,7 @@ void Camera::update(double deltaTime)
   }
   for(int i = 0; i < rayResults->size(); i++)
   {
-    Strip strip = Strip(rayResults->at(i), pos, rot, *width, *height, CAMERA_QUALITY, CAMERA_FOV);
+    Strip strip = Strip(renderer, rayResults->at(i), pos, rot, *width, *height, CAMERA_QUALITY, CAMERA_FOV);
 
     int j = 0;
     while(j < strips->size())
@@ -66,7 +66,8 @@ void Camera::update(double deltaTime)
 
 void Camera::drawView()
 {
-  SDL_Texture* skyBox = scene->getSkyBox();
+  int sbID = scene->getSkyBox();
+  SDL_Texture* skyBox = AssetManager::getInstance().getTexture(sbID);
   SDL_FRect skySrc;
   skySrc.h = skyBox->h;
   skySrc.w = skyBox->w * (float)CAMERA_FOV/360;

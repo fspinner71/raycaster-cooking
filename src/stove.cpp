@@ -1,23 +1,7 @@
 #include "stove.h"
 #include "interaction.h"
 
-SDL_Texture* Stove::tex = NULL;
-
-void Stove::loadTexture(SDL_Renderer* r)
-{
-  tex = IMG_LoadTexture(r, "assets/images/stove.png");
-  SDL_SetTextureScaleMode(tex, SDL_SCALEMODE_NEAREST);
-}
-void Stove::free()
-{
-  if(tex)
-  {
-    SDL_DestroyTexture(tex);
-    tex = NULL;
-  }
-}
-
-Stove::Stove(SDL_Renderer* r) : NPC(r, tex, InteractionID::None)
+Stove::Stove(SDL_Renderer* r) : NPC(r, AssetManager::getInstance().getTextureID("stove"), InteractionID::None)
 {
   getSprite()->setSize({500, 500});
   getSprite()->setZOffset(-250);

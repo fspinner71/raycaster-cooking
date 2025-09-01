@@ -17,7 +17,7 @@ private:
 public:
   static void loadTextures();
   static void NPCFree();
-  NPC(SDL_Renderer* r, SDL_Texture* t, InteractionID intID);
+  NPC(SDL_Renderer* r, int t, InteractionID intID);
   void setPos(vec2 p);
   vec2 getPos();
   float getDist(vec2 p);

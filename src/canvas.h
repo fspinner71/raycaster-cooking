@@ -20,8 +20,6 @@ class Canvas
 {
 private:
   SDL_Renderer* renderer;
-  TTF_TextEngine* textEngine;
-  TTF_Font* font;
 
   int* width;
   int* height;
@@ -29,6 +27,9 @@ private:
   Frame* textBox;
   Text* text;
   bool showTextBox;
+
+  int crossHairTex;
+  SDL_FRect crossHairRect;
 public:
   Canvas(SDL_Renderer* r, int* w, int* h);
   ~Canvas();

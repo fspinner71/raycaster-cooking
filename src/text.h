@@ -7,19 +7,11 @@
 #include <SDL3/SDL_render.h>
 #include <string>
 #include "math.h"
-
-#define FONT_TEXTURE_SIZE 512
-#define NUM_CHARS 128
-#define NUM_FONTS 1
-#define COMIC_SANS 0
+#include "assetmanager.h"
 
 class Text
 {
 private:
-  static TTF_Font* fonts[NUM_FONTS];
-  static SDL_Texture* fontTextures[NUM_FONTS];
-  static SDL_FRect glyphs[NUM_FONTS][NUM_CHARS];
-
   SDL_Renderer* renderer;
   int font;
 
@@ -30,9 +22,10 @@ private:
   void fitText();
 
 public:
-  static void loadFonts(SDL_Renderer* r);
-  static void freeFonts();
   Text(SDL_Renderer* r, int f, std::string t);
+  Text(SDL_Renderer* r, std::string fontName, std::string t);
+  void setFont(std::string name);
+  void setFont(int ID);
   void setText(std::string t);
   void setRect(SDL_FRect r);
   void setColor(vec3 c);

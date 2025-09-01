@@ -2,12 +2,14 @@
 #define GAME_H
 
 #include <iostream>
+#include <fstream>
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_events.h>
 #include <SDL3/SDL_render.h>
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_timer.h>
 #include <SDL3_ttf/SDL_textengine.h>
+#include <nlohmann/json.hpp>
 #include "assetmanager.h"
 #include "map.h"
 #include "player.h"
@@ -39,8 +41,6 @@ private:
   Player* plr;
   Camera* cam;
   Canvas* canvas;
-
-  SDL_Texture* skyBox;
 
   bool isRunning;
 
