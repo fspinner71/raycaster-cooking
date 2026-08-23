@@ -2,7 +2,7 @@
 #include "interaction.h"
 
 
-Fridge::Fridge(SDL_Renderer* r, Item t) : NPC(r, AssetManager::getInstance().getTextureID("fridge"), InteractionID::None)
+Fridge::Fridge(SDL_Renderer* r, Item t) : NPC(r, AssetManager::getInstance().getTextureID("fridge"), InteractionID::BigChungus)
 {
   getSprite()->setSize({1000, 1000});
   getSprite()->setZOffset(0);

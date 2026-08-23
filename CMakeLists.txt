@@ -8,11 +8,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 include_directories(include)
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 
-# add_library(SDL3 SHARED IMPORTED)
-# add_library(SDL3_image SHARED IMPORTED)
-# add_library(SDL3_ttf SHARED IMPORTED)
-# add_library(SDL3_mixer SHARED IMPORTED)
-
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Zi-") # or remove /Zi
 
 # Disable debug information generation during linking for Release executables
@@ -22,10 +17,12 @@ find_library(SDL3_PATH NAMES SDL3 HINTS ${CMAKE_SOURCE_DIR}/libs)
 find_library(SDL3_IMAGE_PATH NAMES SDL3_image HINTS ${CMAKE_SOURCE_DIR}/libs)
 find_library(SDL3_TTF_PATH NAMES SDL3_ttf HINTS ${CMAKE_SOURCE_DIR}/libs)
 find_library(SDL3_MIXER_PATH NAMES SDL3_mixer HINTS ${CMAKE_SOURCE_DIR}/libs)
+find_package(Freetype REQUIRED)
+find_library(HARFBUZZ_LIB NAMES harfbuzz hb)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/bin")
-
 
 add_executable(game ${SOURCES})
 
@@ -91,4 +88,11 @@ if(SDL3_MIXER_PATH)
     target_link_libraries(game ${SDL3_MIXER_PATH})
 else()
     message(FATAL_ERROR "SDL3_mixer not found!")
+endif()
+
+target_link_libraries(game ${FREETYPE_LIBRARIES})
+if(HARFBUZZ_LIB)
+    target_link_libraries(game ${HARFBUZZ_LIB})
+else()
+    message(FATAL_ERROR "harfbuzz not found!")
 endif()

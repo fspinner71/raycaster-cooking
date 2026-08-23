@@ -6,6 +6,7 @@
 #include "npc.h"
 #include "stove.h"
 #include "fridge.h"
+#include "table.h"
 
 class Scene
 {

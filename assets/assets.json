@@ -35,6 +35,9 @@
         },
         "plate": {
             "path": "assets/images/plate.png"
+        },
+        "table": {
+            "path": "assets/images/table.png"
         }
     },
     "fonts": {

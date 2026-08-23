@@ -36,7 +36,7 @@ void Interaction::setID(InteractionID i)
   {
   case InteractionID::BigChungus:
       addText({"HELLO", 20});
-      addText({"This is the stove", 5});
+      addText({"This is test dialogue from the fridge", 5});
     break;
   default:
     break;

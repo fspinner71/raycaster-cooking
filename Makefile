@@ -28,7 +28,7 @@ run: game
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp Makefile
 	@echo "Compiling $(filter-out %.h,$^)"
-	@$(CC) -MMD -MP -c $(filter-out %.h,$^) -o $@ -I$(INCLUDE_DIR)
+	@$(CC) -MMD -MP -c $< -o $@ -I$(INCLUDE_DIR)
 
 clean:
 	@rm $(BUILD_DIR)/*.o

@@ -16,7 +16,6 @@ bool Game::initSDL()
     std::cout << "Could not initialize TTF: " << SDL_GetError();
   }
   
-  window = SDL_CreateWindow("HELLO", WIDTH, HEIGHT, WINDOW_FLAGS);
   window = SDL_CreateWindow("COOKING", WIDTH, HEIGHT, WINDOW_FLAGS);
   if(!window)
   {
@@ -113,9 +112,13 @@ Game::Game()
   Fridge* fridge = new Fridge(renderer, Item::RawPatty);
   fridge->setPos({2.5, 1.5});
 
+  Table* table = new Table(renderer);
+  table->setPos({3.5, 1.5});
+
 
   scene->addNPC(stove);
   scene->addNPC(fridge);
+  scene->addNPC(table);
 
   plr = new Player(renderer, &width, &height);
   plr->setScene(scene);
